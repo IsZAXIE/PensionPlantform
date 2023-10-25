@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@counter-style
+
+span {
+    display: inline-block;
+    width: 100%;
+    height: 450px;
+    margin: 0;
+    background-color: rgb(220, 238, 245);
+}
+
+img {
+    width: 10%;
+    height: 80px;
+}
+
+body {
+    background: url(./image/info1.jpg);
+    background-size: 100%;
+    margin: 0;
+}
+.status{
+    color: rgb(37, 74, 166);
+    text-align: center;
+    font-size: 30px;
+}
+h1{
+    color: rgb(206, 103, 63);
+}
+h2{
+    color: rgb(206, 103, 63);
+    float: right;
+}
+#app{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.row{
+    background-color: rgba(255, 255, 255, 0.9); 
+}
+ul{
+  
+    width: 100%;
+    height: 60px;
+    line-height: 40px;
+   
+    background-color:rgba(82, 145, 182, 0.7);
+}/* 对导航栏的整体样式进行设置 */
+
+a{
+    color: black;
+    padding: 20px;
+    margin: 0px;
+    text-decoration: none;
+}/* 设置a标签的样式 */
+
+.nav1 {
+ width:200px;
+  display: block;
+  color: palegoldenrod;
+  text-align: center;
+  font-size:25px;
+  padding: 14px 16px;
+  text-decoration: none;
+  position: relative;/* 设置相对定位 */
+  display: inline-block;/* 让元素具有块级元素和行内元素的特性,即将块级元素转化为内联元素 */
+}
+
+
+.nav3 {
+  width:200px;
+  display: none;
+  color: palegoldenrod;
+  text-align: center;
+  font-size:25px;
+  padding: 14px 16px;
+  text-decoration: none;
+    position: relative;/* 设置相对定位 */
+    display: inline-block;/* 让元素具有块级元素和行内元素的特性,即将块级元素转化为内联元素 */
+}
+
+.nav5 {
+	 width:200px;
+  display: block;
+  color: palegoldenrod;
+  text-align: center;
+  font-size:25px;
+  padding: 14px 16px;
+  text-decoration: none;
+    position: relative;/* 设置相对定位 */
+    display: inline-block;/* 让元素具有块级元素和行内元素的特性,即将块级元素转化为内联元素 */
+}
+
+.nav7 {
+    width:200px;
+ display: block;
+ color: palegoldenrod;
+ text-align: center;
+ font-size:25px;
+ padding: 14px 16px;
+ text-decoration: none;
+   position: relative;/* 设置相对定位 */
+   display: inline-block;/* 让元素具有块级元素和行内元素的特性,即将块级元素转化为内联元素 */
+}
+.nav3:hover.nav4 {
+    display: block;
+}/* 鼠标悬浮在元素上时,变为块级标签 */
+
+.nav7:hover .nav6 {
+    display: block;
+}/* 鼠标悬浮在元素上时,变为块级标签 */
+.nav5:hover .nav6 {
+    display: block;
+}/* 鼠标悬浮在元素上时,变为块级标签 */
+
+.nav5:hover,li:hover{
+    background-color: #12adb8;
+}
+.nav7:hover,li:hover{
+    background-color: #12adb8;
+}
+
+.nav3:hover .nav4 {
+    display: block;
+}/* 鼠标悬浮在元素上时,变为块级标签 */
+
+.nav3:hover,li:hover{
+    background-color: #12adb8;
+}
+
+.nav1:hover .nav2 {
+    display: block;
+}/* 鼠标悬浮在元素上时,变为块级标签 */
+
+.nav1:hover,li:hover{
+    background-color: #12adb8;
+}
+

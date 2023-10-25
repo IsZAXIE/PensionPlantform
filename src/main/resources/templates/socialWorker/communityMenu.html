@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>后台管理页面</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: url(./img/info1.jpg);
+      background-color: rgba(0, 229, 255, 0.3);
+      background-repeat: 100%;
+      margin: 0;
+      text-align: center;
+    }
+    
+  </style>
+
+</head>
+
+<body>
+  <!-- 顶部 -->
+  <iframe height="100px" width="100%" th:replace="~{/commons/top::topCom}">
+<!--    <div th:replace="~{/commons/top::topCom}"></div>-->
+  </iframe>
+
+  <!-- 左侧 -->
+  <iframe height="550px" width="15%" th:replace="~{commons/leftCom::left}">
+<!--    <div th:replace="~{commons/left::left}"></div>-->
+  </iframe>
+
+  <!-- 右侧 -->
+  <iframe height="550px" width="84.2%" borderframe="0" name="content" th:replace="~{commons/right::right}"></iframe>
+  <!-- 底部 -->
+  <iframe height="80px" width="100%" th:replace="~{commons/footer::footer}"></iframe>
+  <a th:href="@{/loginIndex}">返回</a>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发新帖</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/JSTest4.css}"/>
+</head>
+<body>
+<div class="bbs">
+
+    <header><span style="font-size: 40px;height:70px;width: 1100px;color:#8c939d" onclick="iWantPost()">快来编辑您的新帖子吧！</span></header>
+    &lt;!&ndash;
+    <div class="post" id="post1">
+    &ndash;&gt;
+    <form th:action="@{/newPost}" th:method="post">
+        <input style="font-size: 40px;height:70px;width: 1100px" id="" th:name="title" th:placeholder="'请输入标题（1-50个字符）'">
+        <br>
+        <textarea style="font-size: 40px;height:1120px;width: 1400px" th:class="content" th:name="content" th:placeholder="请输入帖子内容"></textarea>
+        <br>
+        <input style="font-size: 40px;height:70px;width: 210px" class="btn" value="发布" type="submit" onclick="alert('发帖成功')">
+        <br>
+    </form>
+    &lt;!&ndash;
+    <input id="title" placeholder="请输入标题（1-50个字符）">
+
+    <textarea class="content"></textarea>
+    <input class="btn" value="发布" onclick="post()">
+    &ndash;&gt;
+</div>
+<div class="bbs">
+    <form th:action="@{/life}">
+        <button style="font-size: 40px;height:70px;width: 210px;color: #666666">返回</button>
+    </form>
+</div>
+</div>
+</body>
+</html>
+
+<script>
+
+    function iWantPost() {
+        document.getElementById("post1").style.display = "block";
+    }
+
+    function headPortrait() {
+        //使用数组保存发帖者的头像
+        var head = new Array("01.jpg", "02.jpg", "03.jpg", "04.jpg");
+        //生成 0 到 数组长度之间的随机数
+        var n = parseInt(Math.random() * 4);
+        return head[n];
+    }
+
+    function post() {
+        document.getElementById("post1").style.display = "none";
+        /* 创建节点 */
+        var ul = document.getElementsByTagName("ul")[0];
+        var li = document.createElement("li");
+        var div = document.createElement("div");
+        var img = document.createElement("img");
+        var h1 = document.createElement("h1");
+        var p = document.createElement("p");
+        var span = document.createElement("span");
+
+        ul.appendChild(li);
+        li.className = ".bbs section ul li";
+
+        li.appendChild(div);
+        div.className = ".bbs section ul li div";
+
+        // 插入头像
+        div.appendChild(img);
+        img.className = ".bbs section ul li div img";
+        img.src = "../image/" + headPortrait();
+
+        // 插入标题
+        li.appendChild(h1);
+        h1.className = ".bbs section ul li h1";
+        h1.innerHTML = document.getElementById("title").value;
+
+        // 插入板块
+        li.appendChild(p);
+        p.className = ".bbs section ul li p";
+        p.innerHTML = "版块：" + document.getElementsByTagName("select")[0].value;
+
+        // 插入时间
+        p.appendChild(span);
+        span.className = ".bbs section ul li p span";
+
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var hour = today.getHours();
+        var minute = today.getMinutes();
+        var second = today.getSeconds();
+
+        span.innerHTML = "发表时间：" + year + "-" + month + "-" + day + "&nbsp;" + hour + ":" + minute + ":" + second;
+
+        document.getElementById("title").value = "";
+        document.getElementsByTagName("select")[0].value = "";
+        ul.insertBefore(li, ul.firstElementChild);
+    }
+</script>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发新帖</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/JSTest4.css}"/>
+</head>
+<body>
+<div class="bbs">
+
+    <header><span style="font-size: 40px;height:70px;width: 1100px;color:#8c939d" onclick="iWantPost()">快来编辑您的新帖子吧！</span></header>
+    <!--
+    <div class="post" id="post1">
+    -->
+    <form th:action="@{/newPost}" th:method="post">
+        <input style="font-size: 40px;height:70px;width: 500px" id="" th:name="title" placeholder="请输入标题（1-50个字符）">
+        <br>
+        <textarea style="font-size: 40px;height:300px;width: 500px" th:class="content" th:name="content" placeholder="请输入帖子内容"></textarea>
+        <br>
+        <input style="font-size: 40px;height:70px;width: 210px" class="btn" value="发布" type="submit" onclick="alert('发帖成功')">
+        <br>
+    </form>
+    <!--
+    <input id="title" placeholder="请输入标题（1-50个字符）">
+
+    <textarea class="content"></textarea>
+    <input class="btn" value="发布" onclick="post()">
+    -->
+</div>
+<div class="bbs">
+    <form th:action="@{/life}">
+        <button style="font-size: 40px;height:70px;width: 210px;color: #666666">返回</button>
+    </form>
+</div>
+</div>
+</body>
+</html>
+

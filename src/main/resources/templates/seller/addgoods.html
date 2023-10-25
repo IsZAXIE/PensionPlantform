@@ -1,0 +1,542 @@
+<!--
+&lt;!&ndash;
+&lt;!&ndash;
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>添加商品</title>
+  &lt;!&ndash; 引入Bootstrap样式 &ndash;&gt;
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body{
+      background: url(../img/shoppingbg5.jpg);
+      background-size: 100%;
+      margin: 0;
+    }
+    span {
+      display: block;
+      width: 550px;
+      height: 100%;
+      margin: 0;
+      border-radius: 25px;
+      background-color: rgb(89, 136, 136);
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="container mt-5 mb-5">
+    <h1>添加商品</h1>
+    <span class="border">
+      <form th:action="@{/addGoods}" th:method="post">
+        <div class="mb-3 width:50%">
+          <label for="goods-id" class="form-label">商品编号</label>
+          <input type="text" class="form-control" id="goods-id" v-model="newGoods.id">
+        </div>
+        <div class="mb-3">
+          <label for="type-id" class="form-label">商品类型编号</label>
+          <input type="text" class="form-control" id="type-id" v-model="newGoods.typeId">
+        </div>
+        <div class="mb-3">
+          <label for="seller-id" class="form-label">卖家编号</label>
+          <input type="text" class="form-control" id="seller-id" v-model="newGoods.sellerId">
+        </div>
+        <div class="mb-3">
+          <label for="goods-name" class="form-label">商品名称</label>
+          <input type="text" class="form-control" id="goods-name" v-model="newGoods.name">
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">商品图片</label>
+          <input type="text" class="form-control" id="image" v-model="newGoods.image">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">商品价格</label>
+          <input type="text" class="form-control" id="price" v-model="newGoods.price">
+        </div>
+        <div class="mb-3">
+          <label for="manufacturer" class="form-label">制造商</label>
+          <input type="text" class="form-control" id="manufacturer" v-model="newGoods.manufacturer">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">商品描述</label>
+          <textarea class="form-control" id="description" rows="3" v-model="newGoods.description">
+          </textarea>
+        </div>
+        <div class="mb-3">
+          <label for="on-shelf-date" class="form-label">上架日期</label>
+          <input type="date" class="form-control" id="on-shelf-date" v-model="newGoods.onShelfDate">
+        </div>
+        <div class="mb-3">
+          <label for="off-shelf-date" class="form-label">下架日期</label>
+          <input type="date" class="form-control" id="off-shelf-date" v-model="newGoods.offShelfDate">
+        </div>
+        <button type="submit" class="btn btn-primary">添加商品</button>
+      </form>
+    </span>
+  </div>
+
+  &lt;!&ndash; 引入Vue.js和Axios库 &ndash;&gt;
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        newGoods: {
+          id: '',
+          typeId: '',
+          sellerId: '',
+          name: '',
+          image: '',
+          price: '',
+          manufacturer: '',
+          description: '',
+          onShelfDate: '',
+          offShelfDate: ''
+        }
+      },
+      methods: {
+        addGoods() {
+          axios.post('/api/goods', this.newGoods)
+            .then(response => {
+              console.log(response.data);
+              alert('添加成功');
+              this.newGoods = {
+                id: '',
+                typeId: '',
+                sellerId: '',
+                name: '',
+                image: '',
+                price: '',
+                manufacturer: '',
+                description: '',
+                onShelfDate: '',
+                offShelfDate: ''
+              };
+            })
+            .catch(error => {
+              console.log(error);
+              alert('添加失败，请重新尝试');
+            });
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
+&ndash;&gt;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>添加商品</title>
+  &lt;!&ndash; 引入Bootstrap样式 &ndash;&gt;
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body{
+      background: url(../img/shoppingbg5.jpg);
+      background-size: 100%;
+      margin: 0;
+    }
+    span {
+      display: block;
+      width: 550px;
+      height: 100%;
+      margin: 0;
+      border-radius: 25px;
+      background-color: rgb(89, 136, 136);
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app" class="container mt-5 mb-5">
+  <h1>添加商品</h1>
+  <span class="border">
+      <form @submit.prevent="handleSubmit">
+        <div class="mb-3 width:50%">
+          <label for="goods-id" class="form-label">商品编号</label>
+          <input type="text" class="form-control" id="goods-id" v-model="newGoods.id">
+        </div>
+        <div class="mb-3">
+          <label for="type-id" class="form-label">商品类型编号</label>
+          <input type="text" class="form-control" id="type-id" v-model="newGoods.typeId">
+        </div>
+        <div class="mb-3">
+          <label for="seller-id" class="form-label">卖家编号</label>
+          <input type="text" class="form-control" id="seller-id" v-model="newGoods.sellerId">
+        </div>
+        <div class="mb-3">
+          <label for="goods-name" class="form-label">商品名称</label>
+          <input type="text" class="form-control" id="goods-name" v-model="newGoods.name">
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">商品图片</label>
+          <input type="file" class="form-control" id="image" v-model="image">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">商品价格</label>
+          <input type="text" class="form-control" id="price" v-model="newGoods.price">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">商品数量</label>
+          <input type="text" class="form-control" id="num" v-model="newGoods.num">
+        </div>
+        <div class="mb-3">
+          <label for="manufacturer" class="form-label">制造商</label>
+          <input type="text" class="form-control" id="manufacturer" v-model="newGoods.manufacturer">
+        </div>
+        <div class="mb-3">
+          <label for="stock" class="form-label">上架数量</label>
+          <input type="text" class="form-control" id="stock" v-model="newGoods.manufacturer">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">商品描述</label>
+          <textarea class="form-control" id="description" rows="3" v-model="newGoods.description"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="on-shelf-date" class="form-label">上架日期</label>
+          <input type="date" class="form-control" id="on-shelf-date" v-model="newGoods.onShelfDate">
+        </div>
+        <div class="mb-3">
+          <label for="off-shelf-date" class="form-label">下架日期</label>
+          <input type="date" class="form-control" id="off-shelf-date" v-model="newGoods.offShelfDate">
+        </div>
+        <button type="submit" class="btn btn-primary">添加商品</button>
+      </form>
+    </span>
+</div>
+&lt;!&ndash; 引入Vue.js和Axios库 &ndash;&gt;
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+&lt;!&ndash;<script>&ndash;&gt;
+  new Vue({
+    el: '#app',
+    data: {
+      newGoods: {
+        id: '',
+        typeId: '',
+        sellerId: '',
+        name: '',
+        image: '',
+        price: '',
+        num: '',
+        manufacturer: '',
+        stock: '',
+        description: '',
+        onShelfDate: '',
+        offShelfDate: ''
+      }
+    },
+
+    methods: {
+      handleSubmit() {
+
+        const formData = new FormData();
+        const file = this.$refs.image.files[0];
+
+        formData.append('id', this.newGoods.id);
+        formData.append('typeID', this.newGoods.typeId);
+        formData.append('seller_id', this.newGoods.sellerId);
+        formData.append('name', this.newGoods.name);
+        formData.append('image', file);
+        formData.append('price', this.newGoods.price);
+        formData.append('manufacturer', this.newGoods.manufacturer);
+        formData.append('stock', this.newGoods.stock);
+        formData.append('description', this.newGoods.description);
+        formData.append('proDate', this.newGoods.onShelfDate);
+        formData.append('expDate', this.newGoods.offShelfDate);
+
+
+        axios.post('/addGoods',formData)
+                .then(response => {
+                  console.log(response.data);
+                  alert('添加成功');
+                  this.newGoods = {
+                    id: '',
+                    typeId: '',
+                    sellerId: '',
+                    name: '',
+                    image: '',
+                    price: '',
+                    manufacturer: '',
+                    stock: '',
+                    description: '',
+                    onShelfDate: '',
+                    offShelfDate: ''
+                  };
+                })
+                .catch(error => {
+                  console.log(error);
+                  alert('添加失败，请重新尝试');
+                });
+      }
+    }
+  });
+&lt;!&ndash;</script>&ndash;&gt;
+</body>
+
+</html>
+&ndash;&gt;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>商品添加</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+    &lt;!&ndash;
+    .atten {
+      font-size: 12px;
+      font-weight: normal;
+      color: #F00;
+    }
+
+    &ndash;&gt;
+    body {
+      background: url(../img/shoppingbg5.jpg);
+      background-size: 100%;
+      margin:0;
+    }
+    body a{
+      font-size:30px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+<body>
+<table width="80%" border="0" cellpadding="4" cellspacing="1"
+       class="CContent">
+  <tr>
+    <th class="tablestyle_title"style="text-align:left;font-size:30px">商品信息录入</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+      <table border="0" cellpadding="0" cellspacing="0"
+             style="width:80%">
+        <tr>
+          <td width="100%">
+            <form th:action="@{/addGoods}" method="post">
+              <fieldset style="height: 100%;">
+                <legend>商品信息信息</legend>
+                <table border="0" cellpadding="2" cellspacing="1"
+                       style="width: 100%">
+                  <tr>
+                    <td>商品编号：</td>
+                    <td><input name="id" type="text" style="width: 400px"
+                               value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>商品类型编号:</td>
+                    <td><input name="typeID" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>卖家编号:</td>
+                    <td><input name='seller_id' type="text"
+                               style="width: 400px" value="" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>商品名称:</td>
+                    <td><input name="name" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>商品价格:</td>
+                    <td><input name="price" type="number"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>商品描述:</td>
+                    <td><input name="description" type="text"
+                               style="width: 400px; height: 100px;" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>商品图片:</td>
+                    <td><input name="image" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>上架数量:</td>
+                    <td><input name="stock" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>制造商:</td>
+                    <td><input name="manufacture" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>上架日期:</td>
+                    <td><input name="proDate" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                  <tr>
+                    <td>下架日期:</td>
+                    <td><input name="expDate" type="text"
+                               style="width: 400px" value="" /></td>
+                  </tr>
+                </table>
+                <br />
+              </fieldset>
+              <tr>
+                <td colspan="2" align="center" height="50px"><input
+                        type="submit" value="确认添加"
+                        style="height: 29px; margin: 0"></td>
+              </tr>
+            </form>
+          </td>
+
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</body>
+
+</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>商品添加</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+        <!--
+        .atten {
+            font-size: 12px;
+            font-weight: normal;
+            color: #F00;
+        }
+
+        -->
+        body {
+            background: url(./img/shoppingbg5.jpg);
+            background-size: 100%;
+            margin: 0;
+        }
+
+        body a {
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<body>
+<table width="80%" border="0" cellpadding="4" cellspacing="1"
+       class="CContent">
+    <tr>
+        <th class="tablestyle_title" style="text-align:left;font-size:30px">商品信息录入</th>
+    </tr>
+    <tr>
+        <td class="CPanel">
+            <table border="0" cellpadding="0" cellspacing="0"
+                   style="width:80%">
+                <tr>
+                    <td width="100%">
+                        <form th:action="@{/addGoods}" method="post" enctype="multipart/form-data">
+                            <fieldset style="height: 100%;">
+                                <legend>商品信息信息</legend>
+                                <table border="0" cellpadding="2" cellspacing="1"
+                                       style="width: 100%">
+                                    <tr>
+                                        <td>商品编号：</td>
+                                        <td><input name="id" type="text" style="width: 400px"
+                                                   value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>商品类型编号:</td>
+                                        <td><input name="typeID" type="number"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>卖家编号:</td>
+                                        <td><input name='seller_id' type="number"
+                                                   style="width: 400px" value=""/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>商品名称:</td>
+                                        <td><input name="name" type="text"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>商品价格:</td>
+                                        <td><input name="price" type="text"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>商品描述:</td>
+                                        <td><input name="description" type="text"
+                                                   style="width: 400px; height: 100px;" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>商品图片:</td>
+                                        <td><input name="image" type="file"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>上架数量:</td>
+                                        <td><input name="stock" type="text"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>制造商:</td>
+                                        <td><input name="manufacture" type="text"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>上架日期:</td>
+                                        <td><input name="proDate" type="datetime-local"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>下架日期:</td>
+                                        <td><input name="expDate" type="datetime-local"
+                                                   style="width: 400px" value=""/></td>
+                                    </tr>
+                                </table>
+                                <br/>
+                            </fieldset>
+                            <tr>
+                                <td colspan="2" align="center" height="50px"><input
+                                        type="submit" value="确认添加" onclick="alert('新商品添加成功')"
+                                        style="height: 29px; margin: 0"></td>
+                            </tr>
+                        </form>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+</table>
+</body>
+</body>
+
+</html>

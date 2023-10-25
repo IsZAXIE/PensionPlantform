@@ -1,0 +1,140 @@
+<!--
+&lt;!&ndash;
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>生活缴费</title>
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+
+
+<table border="1" id="table" th:title="以下是您的电话费缴费记录">
+    <tr>
+        <td style="width: 100px;height: 50px;font-size: 20px">费用</td>
+        <td style="width: 200px;height: 50px;font-size: 20px">缴费时间</td>
+    </tr>
+    <tr th:each="feeEach:${fees}">
+        <td style="width: 100px;height: 50px;font-size: 20px" th:text="${feeEach.fee}"></td>
+        <td style="width: 200px;height: 50px;font-size: 20px" th:text="${feeEach.time}"></td>
+    </tr>
+</table>
+<form action="feeServlet" method="post">
+    <button id="fee" value="fee" style="width: 100px;height: 50px;font-size: 20px" >缴费</button></form>
+<script>
+    const app={
+        data(){
+            return{
+                id:'112',
+                fee:'100'//数据库读入id和金额
+            }
+        }
+    }
+    Vue.createApp(app).mount('#table')
+</script>
+</body>
+</html>
+&ndash;&gt;
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>生活缴费</title>
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+
+
+
+<form th:action="@{/payPhoneFee}" method="post" >
+    <table border="1">
+        <tr>
+            <td tyle="width: 300px;height: 50px;font-size: 20px" th:text="您当前需要缴费的金额为+'：'+${PayPhoneFee}+元">
+            </td>
+        </tr>
+        <input type="text" hidden="hidden" name="PayPhoneFee" th:value="${PayPhoneFee}"/>
+        <tr>
+            <td>
+                <button id="fee" type="submit" value="fee" style="width: 100px;height: 50px;font-size: 20px">缴费</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+&lt;!&ndash;电话费缴费&ndash;&gt;
+<table border="1">
+    <tr>
+        <td style="width: 306px;height: 50px;font-size: 20px">以下是您的电话费历次缴费记录</td>
+    </tr>
+</table>
+
+&lt;!&ndash;详细历次缴费记录&ndash;&gt;
+<table border="1" id="table" >
+    <tr>
+        <td style="width: 100px;height: 50px;font-size: 20px">费用</td>
+        <td style="width: 200px;height: 50px;font-size: 20px">缴费时间</td>
+    </tr>
+    <tr th:each="feeEach:${fees}">
+        <td style="width: 100px;height: 50px;font-size: 20px" th:text="${feeEach.fee}"></td>
+        <td style="width: 200px;height: 50px;font-size: 20px" th:text="${feeEach.time}"></td>
+    </tr>
+</table>
+
+<script>
+    const app={
+        data(){
+            return{
+                id:'112',
+                fee:'100'//数据库读入id和金额
+            }
+        }
+    }
+    Vue.createApp(app).mount('#table')
+</script>
+</body>
+</html>
+-->
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>生活缴费</title>
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+
+<div th:if="${session.get('phoneFee')==null}">
+    <form th:action="@{/payPhoneFee}" method="post">
+        <table border="1">
+            <tr>
+                <td tyle="width: 300px;height: 50px;font-size: 20px"
+                    th:text="您当前需要缴费的金额为+'：'+${PayPhoneFee}+元">
+                </td>
+            </tr>
+            <input type="text" hidden="hidden" name="PayPhoneFee" th:value="${PayPhoneFee}"/>
+            <tr>
+                <td>
+                    <button id="fee" type="submit" value="fee" style="width: 100px;height: 50px;font-size: 20px" onclick="alert('缴费成功')">缴费
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!--电话费缴费-->
+<table border="1">
+    <tr>
+        <td style="width: 306px;height: 50px;font-size: 20px">以下是您的电话费历次缴费记录</td>
+    </tr>
+</table>
+
+<!--详细历次缴费记录-->
+<table border="1" id="table">
+    <tr>
+        <td style="width: 100px;height: 50px;font-size: 20px">费用</td>
+        <td style="width: 200px;height: 50px;font-size: 20px">缴费时间</td>
+    </tr>
+    <tr th:each="feeEach:${fees}">
+        <td style="width: 100px;height: 50px;font-size: 20px" th:text="${feeEach.fee}"></td>
+        <td style="width: 200px;height: 50px;font-size: 20px" th:text="${feeEach.time}"></td>
+    </tr>
+</table>
+</body>
+</html>

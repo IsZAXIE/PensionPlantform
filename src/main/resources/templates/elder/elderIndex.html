@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>老人主页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/mainMenu.css}">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <!-- 引入 echarts.js -->
+    <script th:src="@{/js/echarts.min.js}"></script>
+    <!-- 引入 vue.js -->
+    <script th:src="@{/js/vue.js}"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+<div class="container-fluid p-7 float-md-start" style="background: url(../img/info1.jpg)">
+    <h2>智能养老服务平台</h2>
+
+    <!-- 获取登录人姓名 -->
+    <h1 th:text="欢迎您+'，'+${alias} +'!'"></h1>
+
+    <!-- 获取登录人头像 -->
+    <img th:src="@{/img/man.jpg}" alt="默认头像">
+</div>
+<div id="header">
+    <div id="menu" style="height: 60px; width: 100%; float: left;">
+
+        <ul>
+            <div class="nav1"> <!-- 以下链接为另外两人做的部分-->
+                <a th:href="@{/life}" class="active">生活社区</a>
+            </div>
+
+            <div class="nav3">
+                <a th:href="@{/health}" class="active">健康监测</a>
+
+            </div>
+
+            <div class="nav5">
+                <a th:href="@{/shopping}" class="active">购物商城</a>
+
+            </div>
+            <div class="nav7">
+                <a th:href="@{/mine}" class="active">我的</a>
+            </div>
+
+        </ul>
+    </div>
+</div>
+
+<!-- 健康部分 -->
+<div id="app">
+    <div>
+        <div class="status" th:text="'您今天的状态: '+${status}"></div>
+        <div id="chart" style="height: 400px;width: 100%;"></div>
+    </div>
+</div>
+
+<!-- 公告部分 --><!--这一块公告不知道怎么读啊-->
+<div class="container-fluid" style="width: 100%; height: 90px;background-color:rgba(82, 145, 182, 0.9);">
+    <div style="height: 80px">
+        <div class="m-5">
+            <h3>通知公告</h3>
+        </div>
+    </div>
+    <div>
+        <div class="ms-0">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-5">
+                    <ul class="list-group">
+
+
+
+                        <li class="list-group-item list-group-item-primary">社区公告</li>
+                        <li th:each="content:${announcements}" class="list-group-item">
+                            <a style="color: black; text-decoration: none"
+                               th:href="${content.getLink()}"
+                               target="_blank" th:text="'发布者: '+${content.getAlias()}+' 内容: '+${content.getContent()}+' 发布时间: '+${content.getTime()}"></a>
+                        </li>
+
+                        <!--
+                        <li class="list-group-item"><a style="color: black; text-decoration: none"
+                                                       href="https://jwc.usst.edu.cn/2022/0816/c10242a273498/page.htm"
+                                                       title="关于转发各学院2022-2023学年第一学期短学期授课安排的通知"
+                                                       target="_blank">关于转发各学院2022-2023学年第一学期短学期授课安排的通知</a>
+                        </li>
+                        <li class="list-group-item"><a style="color: black; text-decoration: none"
+                                                       href="https://jwc.usst.edu.cn/2022/0630/c10242a272037/page.htm"
+                                                       title="2022年度校级虚拟仿真实验教学课程培育项目的立项通知"
+                                                       target="_blank">2022年度校级虚拟仿真实验教学课程培育项目的立项通知</a>
+                        </li>
+                        <li class="list-group-item"><a style="color: black; text-decoration: none"
+                                                       href="https://jwc.usst.edu.cn/2022/0706/c10241a272265/page.htm"
+                                                       title="关于公布上海理工大学2022年度上海高校市级重点课程立项名单的通知"
+                                                       target="_blank">关于公布上海理工大学2022年度上海高校市级重点课程立项名单的通知</a>
+                        </li>
+                        <li class="list-group-item"><a style="color: black; text-decoration: none"
+                                                       href="https://jwc.usst.edu.cn/2022/0817/c10239a273500/page.psp"
+                                                       title="关于做好2022年秋季学期开学阶段本科教学工作的通知"
+                                                       target="_blank">关于做好2022年秋季学期开学阶段本科教学工作的通知</a>
+                        </li>
+                        <li class="list-group-item"><a style="color: black; text-decoration: none"
+                                                       href="https://jwc.usst.edu.cn/2022/0606/c10238a270103/page.htm"
+                                                       title="关于教务管理系统电子成绩单及电子证明功能上线的温馨提示"
+                                                       target="_blank">关于教务管理系统电子成绩单及电子证明功能上线的温馨提示</a>
+                        </li>
+                        <li class="list-group-item"><a style="color: black; text-decoration: none"
+                                                       href="https://jwc.usst.edu.cn/2022/0630/c10242a272037/page.htm"
+                                                       title="2022年度校级虚拟仿真实验教学课程培育项目的立项通知"
+                                                       target="_blank">2022年度校级虚拟仿真实验教学课程培育项目的立项通知</a>
+                        </li>
+                        -->
+
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <!-- 轮播 -->
+                    <div id="demo" class="carousel slide" data-bs-ride="carousel" style="">
+
+                        <!-- 指示符 -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="0"
+                                    class="active"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                        </div>
+
+                        <!-- 轮播图片 -->
+                        <div class="carousel-inner" style="height: 400px">
+                            <div class="carousel-item active">
+                                <img th:src="@{/img/activity1.jpg}" class="d-block" style="width: 100%; height: 100%">
+                            </div>
+                            <div class="carousel-item">
+                                <img th:src="@{/img/activity2.jpg}" class="d-block" style="width: 100%; height: 100%">
+                            </div>
+                            <div class="carousel-item">
+                                <img th:src="@{/img/activity3.jpg}" class="d-block" style="width: 100%; height: 100%">
+                            </div>
+                        </div>
+
+                        <!-- 左右切换按钮 -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div id="footer">
+            <div class="container-fluid p-5 text-dark text-center justify-content-center"
+                 style="background-color:rgba(82, 145, 182, 0.7); width: 100%">
+                <h1>智能养老系统</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                bloodPressureData: [120, 130, 125, 140, 135, 130, 128], // 从数据库获取的血压数据
+                status: "正常", // 默认状态为正常
+            };
+        },
+        mounted() {
+            this.initChart();
+            this.checkStatus(); // 监测状态并更新页面
+        },
+        methods: {
+            initChart() {
+                const myChart = echarts.init(document.getElementById("chart"));
+                myChart.setOption({
+                    title: {
+                        text: "血压柱状图"
+                    },
+                    xAxis: {
+                        type: "category",
+                        data: ["5月16日", "5月17日", "5月18日", "5月19日", "5月20日", "5月21日", "5月22日"],//时间应为数据库数据获取的具体时间
+                    },
+                    yAxis: {
+                        type: "value",
+                    },
+                    series: [
+                        {
+                            data: this.bloodPressureData,
+                            name: '血压数据',
+                            type: "bar",
+                        },
+                    ],
+                });
+            },
+            checkStatus() {
+                let abnormalDataCount = 0; // 异常数据计数器
+                for (let i = 0; i < this.bloodPressureData.length; i++) {
+                    if (this.bloodPressureData[i] > 140 || this.bloodPressureData[i] < 60) {
+                        abnormalDataCount++;
+                    }
+                }
+                if (abnormalDataCount > 0) {
+                    this.status = "异常";
+                } else {
+                    this.status = "正常";
+                }
+            },
+        },
+    });
+</script>
+
+
+</html>

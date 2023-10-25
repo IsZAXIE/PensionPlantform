@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--headBar-->
+<nav th:fragment="footer">
+
+    <div id="app"></div>
+    <!-- 引入Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <script>
+        // Vue组件
+        const DateDisplay = {
+            template: `
+          <div class="container">
+          <h2>{{ date }}{{ week }}</h2>
+          </div>
+        `,
+            data() {
+                return {
+                    date: '',
+                    week: ''
+                }
+            },
+            mounted() {
+                this.getDate()
+            },
+            methods: {
+                getDate() {
+                    const today = new Date()
+                    const year = today.getFullYear()
+                    const month = today.getMonth() + 1
+                    const day = today.getDate()
+
+                    const weekDay = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+                    const dayOfWeek = today.getDay()
+                    const week = weekDay[dayOfWeek]
+
+                    this.date = `${year}年${month}月${day}日`
+                    this.week = week
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                DateDisplay
+            },
+            template: '<date-display/>'
+        })
+    </script>
+</nav>
+
+<nav th:fragment="top">
+    <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+    <style>
+        body {
+            /* background:url(./image/background1.jpg); */
+            background-color:rgba(0, 183, 255, 0.3);
+        }
+        h1{
+            color: rgb(234, 113, 21);
+            float: right;
+        }
+        h2 {
+            color: rgb(200, 95, 34);
+            float: left;
+        }
+    </style>
+
+
+    <div id="root">
+        <h1>欢迎您，{{username}}!</h1>
+        <h2> 智能养老服务平台后台管理系统</h2>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{
+                username:'张三', //应为对应登录者姓名
+            }
+        })
+    </script>
+
+</nav>
+
+</html>

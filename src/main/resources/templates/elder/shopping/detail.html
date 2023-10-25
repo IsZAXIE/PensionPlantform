@@ -1,0 +1,217 @@
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/detail.css}"/>
+    <title></title>
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div class="nav_div">
+    <div class="d-center">
+        <div class="navL">
+            品优购欢迎您！
+        </div>
+    </div>
+</div>
+
+<div class="head d-center">
+    <div class="head-search">
+        <input type="text" placeholder="请输入商品..."/>
+        <button>搜索</button>
+        <ul>
+            <li><a class="style-red" th:href="@{#}">优惠购首发</a></li>
+            <li><a th:href="@{#}">亿元优惠</a></li>
+            <li><a th:href="@{#}">9.9团购</a></li>
+            <li><a th:href="@{#}">满99减30</a></li>
+            <li><a th:href="@{#}">药品</a></li>
+            <li><a th:href="@{#}">营养品</a></li>
+            <li><a th:href="@{#}">生活物品</a></li>
+        </ul>
+    </div>
+    <div class="shopCar" id="textarea1">
+        <span class="car"></span>
+        <span>
+            <a th:href="@{/chosen}">我的购物车<span class="right-arrow">
+        </span>
+        </a>
+        </span>
+        <span class="count">{{num}}</span>
+    </div>
+</div>
+
+
+<hr class="spacer-red"/>
+
+<div class="d-center" id="textarea">
+    <div class="goods-pic"></div>
+    <div class="goods-detail">
+        <h3>{{message}}</h3>
+        <div class="detail-red">
+            <div class="red-col-1">
+                <div class="price-tag">价格</div>
+                <div class="price">{{price}}</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="choose-color-tag">选择大小</div>
+            <button id="btn-choose">大盒</button>
+            <button>中盒</button>
+            <button>小盒</button>
+        </div>
+
+        <div class="col-7">
+            <input type="text"/>
+            <div class="control-num">
+                <div class="add">+</div>
+                <div class="sub">-</div>
+            </div>
+            <button class="add-shopcar">加入购物车</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="readme-div">
+    <div class="d-center">
+        <ul>
+            <li><a th:href="@{#}">关于我们 </a>|</li>
+            <li><a th:href="@{#}">联系我们 </a>|</li>
+            <li><a th:href="@{#}">联系客服 </a>|</li>
+            <li><a th:href="@{#}">商家入驻 </a>|</li>
+            <li><a th:href="@{#}">营销中心 </a>|</li>
+            <li><a th:href="@{#}">手机品优购 </a>|</li>
+            <li><a th:href="@{#}">友情链接 </a>|</li>
+            <li><a th:href="@{#}">销售联盟 </a>|</li>
+            <li><a th:href="@{#}">品优购社区 </a>|</li>
+            <li><a th:href="@{#}">品优购公益 </a>|</li>
+            <li><a th:href="@{#}">English Site </a>|</li>
+            <li><a th:href="@{#}">Contact U</a></li>
+        </ul>
+        <p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100 邮箱:
+            zhanghj+itcast.cn </p>
+        <p>京ICP备08001421号京公网安备110108007702</p>
+    </div>
+</div>
+<script>
+    const app = {
+        data() {
+            return {
+                num: '',//加入购物车的商品数
+                message: '',
+                price: ''//数据均从数据库读取商品名称和价格
+            }
+        }
+    }
+    Vue.createApp(app).mount('#textarea')
+    Vue.createApp(app).mount('#textarea1')
+</script>
+</body>
+</html>
+
+
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/detail.css}" />
+    <title></title>
+
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div class="nav_div">
+    <div class="d-center">
+        <div class="navL">
+            品优购欢迎您！
+        </div>
+    </div>
+</div>
+
+<div class="head d-center">
+    <div class="head-search">
+        <input type="text" placeholder="请输入商品..." />
+        <button>搜索</button>
+        <ul>
+            <li><a class="style-red" th:href="@{#}">优惠购首发</a></li>
+            <li><a th:href="@{#}">亿元优惠</a></li>
+            <li><a th:href="@{#}">9.9团购</a></li>
+            <li><a th:href="@{#}">满99减30</a></li>
+            <li><a th:href="@{#}">药品</a></li>
+            <li><a th:href="@{#}">营养品</a></li>
+            <li><a th:href="@{#}">生活物品</a></li>
+        </ul>
+    </div>
+    <div class="shopCar" id="textarea1">
+        <span class="car"></span>
+        <span><a th:href="@{/chosen}">我的购物车<span class="right-arrow"> 》 </span></a></span>
+    </div>
+</div>
+
+
+<hr class="spacer-red" />
+
+<div class="d-center" id="textarea">
+    <div class="goods-pic">
+        <img src="../img./activity1.jpg" style="width: 200px;height: 100px">
+    </div>
+    <div class="goods-detail">
+        <h3>
+            <div>
+                <td style="width: 150px;height: 50px;font-size: 20px" th:text="${good.getName()}"></td>
+            </div>
+        </h3>
+
+        <div class="detail-red" style="width: 700px;height: 300px">
+
+            <div class="red-col-1" >
+                <div class="price-tag" style="font-size: 20px">价格</div>
+                <div class="price">
+                    <td style="width: 150px;height: 50px;font-size: 20px" th:text="${good.getPrice()}"></td>
+                </div>
+                <br>
+                <div class="price-tag" style="font-size: 20px">描述</div>
+                <div class="price">
+                    <td style="width: 150px;height: 50px;font-size: 20px" th:text="${good.getDescription()}"></td>
+                </div>
+            </div>
+        </div>
+
+        <form th:action="@{/AddIntoCar(id=${good.getId()},info=${good.getName()},price=${good.getPrice()})}" method="post">
+            <input type="text" name="num" style="height: 35px;width: 100px" placeholder="输入购买数量" />
+            <button type="submit" class="add-shopcar">立即抢购</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="readme-div">
+    <div class="d-center">
+        <ul>
+            <li><a th:href="@{#}">关于我们 </a>|</li>
+            <li><a th:href="@{#}">联系我们 </a>|</li>
+            <li><a th:href="@{#}">联系客服 </a>|</li>
+            <li><a th:href="@{#}">商家入驻 </a>|</li>
+            <li><a th:href="@{#}">营销中心 </a>|</li>
+            <li><a th:href="@{#}">手机品优购 </a>|</li>
+            <li><a th:href="@{#}">友情链接 </a>|</li>
+            <li><a th:href="@{#}">销售联盟 </a>|</li>
+            <li><a th:href="@{#}">品优购社区 </a>|</li>
+            <li><a th:href="@{#}">品优购公益 </a>|</li>
+            <li><a th:href="@{#}">English Site </a>|</li>
+            <li><a th:href="@{#}">Contact U</a></li>
+        </ul>
+        <p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100 邮箱: zhanghj+itcast.cn </p>
+        <p>京ICP备08001421号京公网安备110108007702</p>
+    </div>
+</div>
+
+</body>
+</html>

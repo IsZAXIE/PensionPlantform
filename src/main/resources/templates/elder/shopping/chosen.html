@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+
+<body>
+<div class="wrap clearfix" id="textarea">
+    <div class="location">当前位置：首页<span>&gt;</span><b class="red">购物车</b></div>
+    <table width="100%" class="cartTable" cellspacing="0" cellpadding="10px">
+        <!-- 首行 -->
+        <tr class="title">
+            <!--            <td width="50"><input type="checkbox" name="" class="choose_all"></td>-->
+            <!--            <td width="100" class=""><span style="margin-left: -10px;">全选</span></td>-->
+            <td width="80">图片(2.0再说)</td>
+            <td width="400">商品信息</td>
+            <td width="150">单价（元）</td>
+            <td width="150">数量</td>
+            <td width="150">金额（元）</td>
+            <!--            <td width="80">操作</td>-->
+        </tr>
+
+        <!-- 商品具体信息 -->
+        <tr class="row" th:each="settle:${settles}">
+            <!--            <td><input type="checkbox" name="checked" class="choose"></td>-->
+            <td class="tal">
+                <a th:href="@{#}" class="pic">
+                    <img src="images/pic01.jpg" alt="">
+                </a>
+            </td>
+            <td hidden="hidden" class="u-id" th:value="${settle.id}"></td>
+            <td class="tal"><a th:href="@{#}" th:text="${settle.info}"></a></td>
+            <td>
+                <b class="unit" th:text="${settle.price}"></b>
+            </td>
+            <td>
+                <b class="u-nums" type="text" th:text="${settle.num}"></b>
+            </td>
+            <td><b class="u-price" th:text="${settle.totalMoney}"></b></td>
+            <!--            <td><a th:href="@{#}" class="btn-del">删除</a></td>-->
+        </tr>
+
+
+        <tr class="count">
+            <td colspan="7">
+                <div class="jiesuan clearfix">
+                    <div class="left fl">
+                        <p>
+                            <input type="checkbox" name="" class="choose_all"> <a th:href="@{#}"
+                                                                                  class="del_check">删除选中商品</a>
+                        </p>
+                    </div>
+                    <div class="right fr clearfix">
+                        <p><span class="red t-number"
+                                 th:text="'已选商品'+${settlesNum}+'件 总价(不含运费、税费)：'+${totalCost}+'元'"></span>
+                        </p>
+                        <!-- <div><a th:href="@{#}" class="btn pay">结算</a></div> -->
+                        <!--                        <a th:href="@{/pay/{money}(money=100)}" class="btn pay fr">结算</a>-->
+                        <a th:href="@{/pay}" class="btn pay fr" th:text="结算" onclick="alert('购买成功')">
+
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- 引入JS文件 -->
+<script src="js/main.js">
+</script>
+
+</body>
+
+</html>
+

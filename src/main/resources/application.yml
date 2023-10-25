@@ -1,0 +1,32 @@
+
+# set port : 8081
+server:
+  port: 8081
+#  servlet:
+#    context-path: /elder
+
+
+# set data sources
+spring:
+  #change date format
+  mvc:
+    dateTime: yyyy-MM-dd HH:mm:ss
+#    date: yyyy-MM-dd
+  # init data source
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/pension_plantform?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&&allowPublicKeyRetrieval=true
+  thymeleaf:
+    # close thymeleaf cache
+    cache: false
+    # set mode
+#    mode: LEGACYHTML5
+    devtools:
+      restart:
+        enable: true
+        additional-paths: src/main/java
+
+
+

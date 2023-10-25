@@ -1,0 +1,40 @@
+<!--
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>缴费成功</title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+<div id="success">
+<p  style="font-size: 20px">缴费成功，总共缴费 {{ num }} 元。</p></div>
+<script>
+    const app={
+        data(){
+            return{
+                num:100
+            }
+        }
+    }
+    Vue.createApp(app).mount('#success')
+</script>
+</body>
+</html>
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>缴费成功</title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+<!--<div id="success">
+<p  style="font-size: 20px">缴费成功，总共缴费 {{ num }} 元。</p></div>-->
+
+<table border="1" id="table" >
+    <tr th:each="fee:${payfee}">
+        <td style="width: 350px;height: 50px;font-size: 20px" th:text="'缴费成功! 总共缴费:'+${fee}+'元!'"></td>
+    </tr>
+</table>
+</body>
+</html>

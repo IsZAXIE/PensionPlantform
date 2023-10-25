@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="payFeeFragment">
+    <table border="1">
+        <tr>
+            <td tyle="width: 300px;height: 50px;font-size: 20px" th:text="您当前需要缴费的金额为+'：'+${PayPhoneFee}+元">
+            </td>
+        </tr>
+        <input type="text" hidden="hidden" name="PayPhoneFee" th:value="${PayPhoneFee}"/>
+        <tr>
+            <td>
+                <button id="fee" type="submit" value="fee" style="width: 100px;height: 50px;font-size: 20px">缴费
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

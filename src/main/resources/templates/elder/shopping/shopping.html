@@ -1,0 +1,247 @@
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" th:href="@{/css/base.css}" />
+  <link rel="stylesheet" th:href="@{/css/shopping.css}" />
+  <title></title>
+  <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div class="nav_div">
+  <div class="d-center">
+    <div class="navL">
+      品优购欢迎您！
+    </div>
+  </div>
+</div>
+
+<div class="head d-center">
+  <div class="head-search">
+    <input type="text" placeholder="请输入商品..." />
+    <button>搜索</button>
+    <ul>
+      <li><a class="style-red" href="#">优惠购首发</a></li>
+      <li><a href="#">亿元优惠</a></li>
+      <li><a href="#">9.9团购</a></li>
+      <li><a href="#">满99减30</a></li>
+      <li><a href="#">药品</a></li>
+      <li><a href="#">营养品</a></li>
+      <li><a href="#">生活物品</a></li>
+    </ul>
+  </div>
+  <div class="shopCar" id="textarea1">
+    <span class="car"></span>
+    <span><a th:href="@{/chosenFromShopping}">我的购物车<span class="right-arrow"> 》 </span></a></span>
+    <span class="count">{{num}}</span>
+  </div>
+</div>
+
+<div class="d-center">
+  <div class="top-type">
+    <ul>
+      <li><a href="#">药品</a></li>
+      <li><a href="#">营养品</a></li>
+      <li><a href="#">生活用品</a></li>
+    </ul>
+  </div>
+</div>
+
+<hr class="spacer-red" />
+
+<div class="d-center">
+  <div class="center-left">
+    <div class="goods-title">全部商品分类</div>
+    <ul>
+      <li>购物<span class="center-right-arrow"> 》 </span></li>
+      <li><a class="phone-link" th:href="@{/listFromShopping}">药品<span class="center-right-arrow">》 </span></a></li>
+      <li><a class="phone-link" th:href="@{/listFromShopping}">营养品<span class="center-right-arrow">》 </span></a></li>
+      <li><a class="phone-link" th:href="@{/listFromShopping}">生活用品<span class="center-right-arrow">》 </span></a></li>
+    </ul>
+  </div>
+
+  <div class="center-pic">
+    <div class="pic-left-arrow">
+					<span class="la">
+						<</span> </div> <div class="pic-right-arrow">
+    <span class="ra"> </span>
+  </div>
+    <ul>
+      <li></li>
+      <li class="style-fill"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="center-right">
+    <div class="news-title">
+      品优购快报
+      <span>更多<span class="news-right-arrow"> 》 </span></span>
+    </div>
+    <div class="news-item">
+      <ul>
+        <li><a href="#">【特惠】爆款耳机5折秒！</a></li>
+        <li><a href="#">【特惠】母亲节，健康好礼低至5折！</a></li>
+        <li><a href="#">【特惠】爆款耳机5折秒！</a></li>
+        <li><a href="#">【特惠】9.9元洗100张照片！</a></li>
+        <li><a href="#">【特惠】长虹智能空调立省1000！</a></li>
+      </ul>
+    </div>
+    <div class="news-advertisement"></div>
+  </div>
+</div>
+
+<div class="readme-div">
+  <div class="d-center">
+    <ul>
+      <li><a href="#">关于我们 </a>|</li>
+      <li><a href="#">联系我们 </a>|</li>
+      <li><a href="#">联系客服 </a>|</li>
+      <li><a href="#">商家入驻 </a>|</li>
+      <li><a href="#">营销中心 </a>|</li>
+      <li><a href="#">手机品优购 </a>|</li>
+      <li><a href="#">友情链接 </a>|</li>
+      <li><a href="#">销售联盟 </a>|</li>
+      <li><a href="#">品优购社区 </a>|</li>
+      <li><a href="#">品优购公益 </a>|</li>
+      <li><a href="#">English Site </a>|</li>
+      <li><a href="#">Contact U</a></li>
+    </ul>
+    <p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100 邮箱: zhanghj+itcast.cn </p>
+    <p>京ICP备08001421号京公网安备110108007702</p>
+  </div>
+</div>
+<script>
+  const app={
+    data(){
+      return {
+        num:'',//加入购物车的商品数
+      }
+    }
+  }
+  Vue.createApp(app).mount('#textarea1')
+</script>
+</body>
+</html>
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" th:href="@{/css/base.css}" />
+  <link rel="stylesheet" th:href="@{/css/shopping.css}" />
+  <title></title>
+  <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div class="nav_div">
+  <div class="d-center">
+    <div class="navL">
+      品优购欢迎您！
+    </div>
+  </div>
+</div>
+
+<div class="head d-center">
+  <div class="head-search">
+    <input type="text" placeholder="请输入商品..." />
+    <button>搜索</button>
+    <ul>
+      <li><a class="style-red" href="#">优惠购首发</a></li>
+      <li><a href="#">亿元优惠</a></li>
+      <li><a href="#">9.9团购</a></li>
+      <li><a href="#">满99减30</a></li>
+      <li><a href="#">药品</a></li>
+      <li><a href="#">营养品</a></li>
+      <li><a href="#">生活物品</a></li>
+    </ul>
+  </div>
+  <div class="shopCar" id="textarea1">
+    <span class="car"></span>
+    <span><a th:href="@{/chosen}">我的购物车<span class="right-arrow"> 》 </span></a></span>
+  </div>
+</div>
+
+<div class="d-center">
+  <div class="top-type">
+    <ul>
+      <li><a href="#">药品</a></li>
+      <li><a href="#">营养品</a></li>
+      <li><a href="#">生活用品</a></li>
+      <li width="2000px"><a width="2000px" href="/elder">点击返回主页</a></li>
+    </ul>
+  </div>
+</div>
+
+<hr class="spacer-red" />
+
+<div class="d-center">
+  <div class="center-left">
+    <div class="goods-title">全部商品分类</div>
+    <ul>
+      <li>购物<span class="center-right-arrow"> 》 </span></li>
+      <li><a class="phone-link" th:href="@{/list(goods_type='drug')}">药品<span class="center-right-arrow">》 </span></a></li>
+      <li><a class="phone-link" th:href="@{/list(goods_type='nutri')}">营养品<span class="center-right-arrow">》 </span></a></li>
+      <li><a class="phone-link" th:href="@{/list(goods_type='life')}">生活用品<span class="center-right-arrow">》 </span></a></li>
+    </ul>
+  </div>
+
+  <div class="center-pic">
+    <img src="../img/background6.jpg" style="height: 500px;width: 650px">
+    <div class="pic-left-arrow">
+					<span class="la">
+
+                    </span> </div> <div class="pic-right-arrow">
+    <span class="ra"> </span>
+  </div>
+    <ul>
+      <li></li>
+      <li class="style-fill"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="center-right">
+    <div class="news-title">
+      品优购快报
+      <span>更多<span class="news-right-arrow"> 》 </span></span>
+    </div>
+    <div class="news-item">
+      <ul>
+        <li><a href="#">【特惠】爆款耳机5折秒！</a></li>
+        <li><a href="#">【特惠】母亲节，健康好礼低至5折！</a></li>
+        <li><a href="#">【特惠】爆款耳机5折秒！</a></li>
+        <li><a href="#">【特惠】9.9元洗100张照片！</a></li>
+        <li><a href="#">【特惠】长虹智能空调立省1000！</a></li>
+      </ul>
+    </div>
+    <div class="news-advertisement"></div>
+  </div>
+</div>
+
+<div class="readme-div">
+  <div class="d-center">
+    <ul>
+      <li><a href="#">关于我们 </a>|</li>
+      <li><a href="#">联系我们 </a>|</li>
+      <li><a href="#">联系客服 </a>|</li>
+      <li><a href="#">商家入驻 </a>|</li>
+      <li><a href="#">营销中心 </a>|</li>
+      <li><a href="#">手机品优购 </a>|</li>
+      <li><a href="#">友情链接 </a>|</li>
+      <li><a href="#">销售联盟 </a>|</li>
+      <li><a href="#">品优购社区 </a>|</li>
+      <li><a href="#">品优购公益 </a>|</li>
+      <li><a href="#">English Site </a>|</li>
+      <li><a href="#">Contact U</a></li>
+    </ul>
+    <p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100 邮箱: zhanghj+itcast.cn </p>
+    <p>京ICP备08001421号京公网安备110108007702</p>
+  </div>
+</div>
+</body>
+</html>

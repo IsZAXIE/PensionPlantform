@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>商城后台管理页面</title>
+    <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+    <style type="text/css">
+        body {
+            /* background:url(./image/background1.jpg); */
+            background-color:rgba(0, 183, 255, 0.3);
+        }
+        h1{
+            color: rgb(234, 113, 21);
+            float: right;
+        }
+        h2 {
+            color: rgb(200, 95, 34);
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" th:fragment="topCom">
+        <h1 th:text="'欢迎您, '+${alias}+' !'"></h1>
+        <h2> 智能养老服务平台后台管理系统</h2>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false
+
+    new Vue({
+        el:'#root',
+        data:{
+            username:'张三', //应为对应登录者姓名
+        }
+    })
+</script>
+
+</html>

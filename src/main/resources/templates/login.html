@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>登录页面</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 引入Bootstrap样式 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* 表单位置设置 */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            width: 400px;
+            flex-direction: column;
+        }
+
+        body {
+            background: url(../img/background6.jpg);
+            /*background:url("@{/img/background6.jpg}");*/
+            background-size: 100%;
+            margin: 0;
+        }
+
+        span {
+            display: inline-block;
+            width: 500px;
+            height: 100%;
+            margin: 0;
+            border-radius: 50px;
+            background-image: linear-gradient(to left, rgba(255, 179, 0, 0), rgba(204, 125, 0, 1));
+
+        }
+
+    </style>
+</head>
+<body>
+<div th:if="${session.get('msg')!=null}">
+    <h1 th:text="${session.get('msg')}"></h1>
+</div>
+<img th:src="@{/img/top1.jpg}" width=100% height=90px>
+<div id="login" class="container float-center mt-4 mb-5 height:100%">
+    <span class="border">
+    
+    <!-- 登录表单 -->
+    <form @submit.prevent="submitForm" class="needs-validation" novalidate action="http://localhost:8081/judgeLogin"
+          method="post">
+         <h1 class="text-center text-info">用户登录</h1>
+      <div class="form-group text-left text-info" style="font-size:30px">
+        
+          <b><hr></b> 
+        <label for="userid">账号</label>
+        <input type="text" v-model.trim="username" class="form-control" id="username" placeholder="输入账号" required>
+        <div class="invalid-feedback">账号不能为空</div>
+      </div>
+      <div class="form-group text-left text-info" style="font-size:30px">
+        <label for="password">用户密码</label>
+        <input type="password" v-model.trim="password" class="form-control" id="password" placeholder="输入用户密码"
+               required>
+        <div class="invalid-feedback">用户密码不能为空</div>
+      </div>
+      <div class="form-group text-left text-info" style="font-size:30px">
+        <label for="role">身份</label>
+        <select v-model="role" class="form-control" id="role" required>
+          <option value="" selected disabled>--请选择用户的身份--</option>
+          <option value="elder">老人</option>
+          <option value="admin">社区管理员</option>
+          <option value="seller">商家</option>
+        </select>
+        <div class="invalid-feedback">身份未选择</div>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" v-model="remember" class="form-check-input" id="remember">
+        <label class="form-check-label" for="remember">记住密码</label>
+      </div>
+      <button type="submit" class="btn btn-info btn-block" style="font-size:30px">登录</button>
+        <!--      <div class="alert alert-danger mt-3" th:msg=#{"hi"}></div>-->
+      <div class="alert alert-danger mt-3" th:text="${warnMessage}==null?'请输入账号密码':${warnMessage}"></div>
+    </form>
+    <p class="text-center mt-4"> <a th:href="@{/forget}" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    title="请联系社区管理 !">忘记密码？</a></p>
+  </span>
+</div>
+
+<!-- 引入Vue.js和Axios库 -->
+<script th:src="@{/js/vue.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+    var login = new Vue({
+        el: '#login',
+        data: {
+            userid: '',
+            password: '',
+            role: '',
+            error: ''
+        },
+        methods: {
+            submitForm: function () {
+                // 验证表单
+                var form = document.querySelector('.needs-validation');
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+                // 发送登录请求
+                axios.post('/login', {
+                    username: this.username,
+                    password: this.password,
+                    role: this.role
+                })
+                    .then(function (response) {
+                    // 处理成功响应
+                    window.location.href = '/judgeLogin'; // 跳转到仪表盘页面
+                    })
+                    .catch(function (error) {
+                    // 处理请求错误
+                    login.error = error.response.data.message;
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>>

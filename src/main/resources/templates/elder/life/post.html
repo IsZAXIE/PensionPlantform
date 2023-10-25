@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>生活社区</title>
+    <style>
+        .center {
+            align-content: center;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div>
+    <img th:src="@{/img/pic1.jpg}" alt="pic" width="710" height="250">
+    <img th:src="@{/img/pic2.png}" alt="pic2" width="710" height="250">
+</div>
+<div id="textarea" style="width: 1420px;height: 800px">
+
+
+    <div>
+        <a th:href="@{/newPost}">
+            <button id="new" value="newPost" style="width: 100px;height: 50px;font-size: 20px">发新帖</button>
+        </a>
+        <a th:href="@{/personalChat}">
+            <button id="personal" value="personal" style="width: 100px;height: 50px;font-size: 20px">私聊</button>
+        </a>
+        <a th:href="@{/fees}">
+            <button id="fee" value="fee" style="width: 100px;height: 50px;font-size: 20px">生活缴费</button>
+        </a>
+        <a th:href="@{/judgeLogin}">
+            <button id="returnIndex" value="returnIndex" style="width: 140px;height: 50px;font-size: 20px">返回主页面</button>
+        </a>
+    </div>
+
+    <table border="1" th:each="postEach:${posts}" style="width: 100%;height: 100px;font-size: 20px">
+        <tr>
+            <td th:text="'发布者:'"/>
+            <td th:text="${postEach.getPublisherName()}"/>
+        </tr>
+        <tr>
+            <td th:text="'标题: '"/>
+            <td th:text="${postEach.getTitle()}"/>
+        </tr>
+        <tr>
+            <td th:text="'内容:'"/>
+            <td th:text="${postEach.getContent()}"/>
+        </tr>
+        <tr>
+            <td th:text="'发布时间:'"/>
+            <td th:text="${postEach.getTime()}"/>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+</div>
+<nav aria-label="Page navigation" class="center">
+    <ul class="pagination">
+        <li>
+            <a th:href="@{#}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            <a th:href="@{#}">1</a>
+            <a th:href="@{#}">2</a>
+            <a th:href="@{#}">3</a>
+            <a th:href="@{#}">4</a>
+            <a th:href="@{#}">5</a>
+            <a th:href="@{#}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="center">
+    <!--
+    <form action="newPost.html">
+        <button id="new" value="new" style="width: 100px;height: 50px;font-size: 20px">发新帖</button>
+    </form>
+    <form action="../../personalChat.html">
+        <button id="personal" value="personal" style="width: 100px;height: 50px;font-size: 20px">私聊</button>
+    </form>
+    <form action="../fee/lifeFee.html">
+        <button id="fee" value="fee" style="width: 100px;height: 50px;font-size: 20px">生活缴费</button>
+    </form>
+    -->
+</div>
+<script>
+    const app = {
+        data() {
+            return {
+                messages: [
+                    {id: 123, message: 'hello'},//数据库读入id,帖子内容
+                    {id: 124, message: 'hi'}//数据库读入id,帖子内容
+                ]
+            }
+        }
+    }
+    Vue.createApp(app).mount('#textarea')
+</script>
+</body>
+</html>

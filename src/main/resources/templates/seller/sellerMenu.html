@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src=""></script>
+    <style>
+        body {
+            background:url(./img/info1.jpg);
+            /* background-color:rgba(0, 247, 255, 0.6) ; */
+            background-size: 100%;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+     <!-- 顶部 -->
+     <iframe height="100px" width="100%" th:replace="commons/top::topCom(alias = ${alias})"></iframe>
+     <!-- 左侧 -->
+     <iframe height="550px" width="10%" th:replace="~{commons/left::left}"></iframe>
+     <!-- 右侧 -->
+     <iframe height="550px" width="89.2%" borderframe="0" name="content" th:replace="~{commons/right::right}"></iframe>
+     <!-- 底部 -->
+     <iframe height="80px" width="100%" th:replace="~{commons/footer::footer}"></iframe>
+     <a th:href="@{/loginIndex}">返回</a>
+</body>
+
+</html>

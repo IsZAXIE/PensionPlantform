@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>商品库存信息</title>
+  <!-- 引入Vue和Bootstrap的CDN链接 -->
+  <script th:src="@{/js/vue.js}"></script>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+  <style>
+      body{
+      background: url(../img/info1.jpg);
+      background-size: 100%;
+      margin: 0;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="app" class="container mt-5">
+    <h1 class="mb-3 text-center">商品库存信息</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>商品编号</th>
+          <th>商品名称</th>
+          <th>制造商</th>
+          <th>库存余量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item:${items}">
+          <td th:text="${item.getId()}"></td>
+          <td th:text="${item.getName()}"></td>
+          <td th:text="${item.getManufacture()}"></td>
+          <td th:text="${item.getStock()}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        items: [
+          { id: '001', name: '商品1', manufacturer: '制造商A', stock: 100 },
+          { id: '002', name: '商品2', manufacturer: '制造商B', stock: 200 },
+          { id: '003', name: '商品3', manufacturer: '制造商C', stock: 300 }
+        ]
+        //items中的数据应为数据库中存储的数据
+      }
+    });
+  </script>
+</body>
+</html>

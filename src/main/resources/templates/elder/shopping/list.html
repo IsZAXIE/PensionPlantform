@@ -1,0 +1,282 @@
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" th:href="@{/css/base.css}" />
+  <link rel="stylesheet" th:href="@{/css/list.css}" />
+  <title></title>
+  <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div class="nav_div">
+  <div class="d-center">
+    <div class="navL">
+      品优购欢迎您！
+    </div>
+  </div>
+</div>
+
+<div class="head d-center">
+  <div class="head-search">
+    <input type="text" placeholder="请输入商品..." />
+    <button>搜索</button>
+    <ul>
+      <li><a class="style-red" th:href="@{#}">优惠购首发</a></li>
+      <li><a th:href="@{#}">亿元优惠</a></li>
+      <li><a th:href="@{#}">9.9团购</a></li>
+      <li><a th:href="@{#}">满99减30</a></li>
+      <li><a th:href="@{#}">药品</a></li>
+      <li><a th:href="@{#}">营养品</a></li>
+      <li><a th:href="@{#}">生活物品</a></li>
+    </ul>
+  </div>
+  <div class="shopCar" id="textarea1">
+    <span class="car"></span>
+    <span><a th:href="@{/chosenFromList}">我的购物车<span class="right-arrow"> 》 </span></a></span>
+    <span class="count">{{num}}</span>
+  </div>
+</div>
+
+<hr class="red-line" />
+
+<div class="d-center" id="textarea">
+  <div class="advertisement"></div>
+  <div class="phone-div">
+    <img src="upload/mobile.jpg" />
+    <div class="phone-title">{{message1}}</div>
+    <div class="phone-div-column">
+      <h2 class="price">{{price1}}</h2>
+    </div>
+    <button><a th:href="@{/detailFromList}">立即抢购</a></button>
+  </div>
+
+  <div class="phone-div" >
+    <img src="upload/mobile.jpg" />
+    <div class="phone-title">{{message2}}</div>
+    <div class="phone-div-column">
+      <h2 class="price">{{price2}}</h2>
+    </div>
+    <button><a th:href="@{/detailFromList}">立即抢购</a></button>
+  </div>
+
+  <div class="phone-div">
+    <img src="upload/mobile.jpg" />
+    <div class="phone-title">{{message3}}</div>
+    <div class="phone-div-column">
+      <h2 class="price">{{price3}}</h2>
+    </div>
+    <button><a th:href="@{/detailFromList}">立即抢购</a></button>
+  </div>
+
+  <div class="phone-div">
+    <img src="upload/mobile.jpg" />
+    <div class="phone-title">{{messages}}</div>
+    <div class="phone-div-column">
+      <h2 class="price">{{price4}}</h2>
+    </div>
+    <button><a th:href="@{/detailFromList}">立即抢购</a></button>
+  </div>
+</div>
+
+<div class="d-center control-div">
+  <div class="control-bar">
+    <button class="btn-pre"><a th:href="@{#}">&lt;&lt;上一页</a></button>
+    <button class="btn-page"><a th:href="@{#}">1</a></button>
+    <button class="btn-dot"><a th:href="@{#}">2</a></button>
+    <button class="btn-page"><a th:href="@{#}">3</a></button>
+    <button class="btn-page"><a th:href="@{#}">4</a></button>
+    <button class="btn-page"><a th:href="@{#}">5</a></button>
+    <button class="btn-dot">...</button>
+    <button class="btn-next"><a th:href="@{#}">下一页&gt;&gt;</a></button>
+    <div class="words">共10页 到第</div>
+    <input type="text" />
+    <div class="words">页</div>
+    <button class="btn-confirm">确定</button>
+  </div>
+</div>
+
+
+<div class="readme-div">
+  <div class="d-center">
+    <ul>
+      <li><a th:href="@{#}">关于我们 </a>|</li>
+      <li><a th:href="@{#}">联系我们 </a>|</li>
+      <li><a th:href="@{#}">联系客服 </a>|</li>
+      <li><a th:href="@{#}">商家入驻 </a>|</li>
+      <li><a th:href="@{#}">营销中心 </a>|</li>
+      <li><a th:href="@{#}">手机品优购 </a>|</li>
+      <li><a th:href="@{#}">友情链接 </a>|</li>
+      <li><a th:href="@{#}">销售联盟 </a>|</li>
+      <li><a th:href="@{#}">品优购社区 </a>|</li>
+      <li><a th:href="@{#}">品优购公益 </a>|</li>
+      <li><a th:href="@{#}">English Site </a>|</li>
+      <li><a th:href="@{#}">Contact U</a></li>
+    </ul>
+    <p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100 邮箱: zhanghj+itcast.cn </p>
+    <p>京ICP备08001421号京公网安备110108007702</p>
+  </div>
+</div>
+<script>
+  const app={
+    data(){
+      return {
+        num:'',//加入购物车的商品数
+        message1:'',
+        price1:'',
+        message2:'',
+        price2:'',
+        message3:'',
+        price3:'',
+        message4:'',
+        price4:''//数据均从数据库读取商品名称和价格
+      }
+    }
+  }
+  Vue.createApp(app).mount('#textarea')
+  Vue.createApp(app).mount('#textarea1')
+</script>
+</body>
+</html>
+
+
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" th:href="@{/css/base.css}" />
+  <link rel="stylesheet" th:href="@{/css/list.css}" />
+  <title></title>
+  <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script>
+</head>
+<body>
+<div class="nav_div">
+  <div class="d-center">
+    <div class="navL">
+      品优购欢迎您！
+    </div>
+  </div>
+</div>
+
+<div class="head d-center">
+  <div class="head-search">
+    <input type="text" placeholder="请输入商品..." />
+    <button>搜索</button>
+    <ul>
+      <li><a class="style-red" th:href="@{#}">优惠购首发</a></li>
+      <li><a th:href="@{#}">亿元优惠</a></li>
+      <li><a th:href="@{#}">9.9团购</a></li>
+      <li><a th:href="@{#}">满99减30</a></li>
+      <li><a th:href="@{#}">药品</a></li>
+      <li><a th:href="@{#}">营养品</a></li>
+      <li><a th:href="@{#}">生活物品</a></li>
+    </ul>
+  </div>
+  <div class="shopCar" id="textarea1">
+    <span class="car"></span>
+    <span><a th:href="@{/chosen}">我的购物车<span class="right-arrow"> 》 </span></a></span>
+  </div>
+</div>
+
+<hr class="red-line" />
+
+<div class="d-center" id="textarea">
+
+  <div class="phone-div" >
+    <img src="../img/background6.jpg" style="height: 300px;width: 270px"/>
+    <div>
+      <td style="width: 150px;height: 50px;font-size: 20px" th:text="${goods.get(0).getName()}"></td>
+    </div>
+    <div class="phone-div-column">
+      <div>
+        <td style="width: 150px;height: 50px;font-size: 20px" th:text="价格+'：'+${goods.get(0).getPrice()}"></td>
+      </div>
+    </div>
+    <button><a th:href="@{/detail(goods_id=${goods.get(0).getId()})}">立即抢购</a></button>
+  </div>
+
+  <div class="phone-div" >
+    <img src="../img/background6.jpg" style="height: 300px;width: 270px"/>
+    <div>
+      <td style="width: 150px;height: 50px;font-size: 20px" th:text="${goods.get(0).getName()}"></td>
+    </div>
+    <div class="phone-div-column">
+      <div>
+        <td style="width: 150px;height: 50px;font-size: 20px" th:text="价格+'：'+${goods.get(0).getPrice()}"></td>
+      </div>
+    </div>
+    <button><a th:href="@{/detail(goods_id=${goods.get(0).getId()})}">立即抢购</a></button>
+  </div>
+
+  <div class="phone-div" >
+    <img src="../img/background6.jpg" style="height: 300px;width: 270px"/>
+    <div>
+      <td style="width: 150px;height: 50px;font-size: 20px" th:text="${goods.get(0).getName()}"></td>
+    </div>
+    <div class="phone-div-column">
+      <div>
+        <td style="width: 150px;height: 50px;font-size: 20px" th:text="价格+'：'+${goods.get(0).getPrice()}"></td>
+      </div>
+    </div>
+    <button><a th:href="@{/detail(goods_id=${goods.get(0).getId()})}">立即抢购</a></button>
+  </div>
+
+  <div class="phone-div" >
+    <img src="../img/background6.jpg" style="height: 300px;width: 270px"/>
+    <div>
+      <td style="width: 150px;height: 50px;font-size: 20px" th:text="${goods.get(0).getName()}"></td>
+    </div>
+    <div class="phone-div-column">
+      <div>
+        <td style="width: 150px;height: 50px;font-size: 20px" th:text="价格+'：'+${goods.get(0).getPrice()}"></td>
+      </div>
+    </div>
+    <button><a th:href="@{/detail(goods_id=${goods.get(0).getId()})}">立即抢购</a></button>
+  </div>
+
+</div>
+
+<div class="d-center control-div">
+  <div class="control-bar">
+    <button class="btn-pre"><a th:href="@{#}">&lt;&lt;上一页</a></button>
+    <button class="btn-page"><a th:href="@{#}">1</a></button>
+    <button class="btn-dot"><a th:href="@{#}">2</a></button>
+    <button class="btn-page"><a th:href="@{#}">3</a></button>
+    <button class="btn-page"><a th:href="@{#}">4</a></button>
+    <button class="btn-page"><a th:href="@{#}">5</a></button>
+    <button class="btn-dot">...</button>
+    <button class="btn-next"><a th:href="@{#}">下一页&gt;&gt;</a></button>
+    <div class="words">共10页 到第</div>
+    <input type="text" />
+    <div class="words">页</div>
+    <button class="btn-confirm">确定</button>
+  </div>
+</div>
+
+
+<div class="readme-div">
+  <div class="d-center">
+    <ul>
+      <li><a th:href="@{#}">关于我们 </a>|</li>
+      <li><a th:href="@{#}">联系我们 </a>|</li>
+      <li><a th:href="@{#}">联系客服 </a>|</li>
+      <li><a th:href="@{#}">商家入驻 </a>|</li>
+      <li><a th:href="@{#}">营销中心 </a>|</li>
+      <li><a th:href="@{#}">手机品优购 </a>|</li>
+      <li><a th:href="@{#}">友情链接 </a>|</li>
+      <li><a th:href="@{#}">销售联盟 </a>|</li>
+      <li><a th:href="@{#}">品优购社区 </a>|</li>
+      <li><a th:href="@{#}">品优购公益 </a>|</li>
+      <li><a th:href="@{#}">English Site </a>|</li>
+      <li><a th:href="@{#}">Contact U</a></li>
+    </ul>
+    <p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100 邮箱: zhanghj+itcast.cn </p>
+    <p>京ICP备08001421号京公网安备110108007702</p>
+  </div>
+</div>
+
+</body>
+</html>
+

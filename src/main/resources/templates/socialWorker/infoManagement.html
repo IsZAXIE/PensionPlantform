@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>用户信息管理界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            background: url(./image/info1.jpg);
+            background-size: 100%;
+            margin:0;
+        }
+        h1{
+            text-align: center;
+            padding: auto;
+            color: rgb(19, 31, 143);
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table class="table table-striped text-center">
+            <thead>
+                <h1>用户信息列表</h1>
+                <tr>
+                    <th width="6%">姓名</th>
+                    <th width="9%">账号</th>
+                    <th width="9%">密码</th>
+                    <th width="5%">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(user, index) in users" :key="user.id">
+                    <td>
+                        <input type="text" v-model="user.name" :disabled="!user.editing" />
+                    </td>
+                    <td>
+                        <input type="text" v-model="user.phone" :disabled="!user.editing" />
+                    </td>
+                    <td>
+                        <input type="text" v-model="user.password" :disabled="!user.editing" />
+                    </td>
+                    <td>
+                        <button @click="editUser(index)" v-if="!user.editing">编辑</button>
+                        <button @click="saveUser(user)" v-if="user.editing">保存</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                users: [
+                { name: '张三', phone: '111111', password: '123fg' },
+                { name: '李四', phone: '222222', password: '234fd' },
+                { name: '小明', phone: '333333', password: "432df" }
+                ]//实际数据从数据库获取
+            },
+            mounted() {
+                this.getUsers()
+            },
+            methods: {
+                getUsers() {
+                    axios.get('http://example.com/api/users') //需要修改为实际api
+                        .then(response => this.users = response.data)
+                },
+                editUser(index) {
+                    this.users[index].editing = true
+                },
+                saveUser(user) {
+                    axios.put(`http://example.com/api/users/${user.id}`, user)
+                        .then(() => {
+                            user.editing = false // 保存成功后取消编辑状态
+                        })
+                }
+            }
+        })
+
+        const express = require('express')
+        const app = express()
+
+        // 更新用户信息
+        app.put('/api/users/:id', (req, res) => {
+            const id = req.params.id
+            const updatedUser = req.body
+
+            // TODO：将更新后的用户信息存储到数据库中
+
+            res.send('用户信息已更新')
+        })
+
+        app.listen(3000, () => {
+            console.log('服务器已启动')
+        })
+    </script>
+</body>
+
+</html>
