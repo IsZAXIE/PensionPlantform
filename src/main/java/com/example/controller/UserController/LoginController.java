@@ -7,6 +7,8 @@ import com.example.Service.UserService;
 import com.example.pojo.Display;
 import com.example.pojo.PAP;
 import com.example.utils.AES;
+import com.example.utils.HttpWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,7 @@ public class LoginController {
 
 
     @RequestMapping("/login")
-    public void login(@RequestBody String s, Model model, HttpSession session) {
+    public void login(@RequestBody String s, Model model, HttpSession session, HttpServletResponse response) {
         Display display;
         JSONObject jsonObject = JSONObject.parseObject(s);
         PAP pap = new PAP();
@@ -54,7 +56,9 @@ public class LoginController {
 
 
         if(display==null){
-            return;
+            session.removeAttribute("msg");
+            session.setAttribute("msg","账号或密码错误，请检查后重新输入");
+            return ;
         }
 
 

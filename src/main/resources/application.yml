@@ -16,8 +16,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/pension_plantform?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&&allowPublicKeyRetrieval=true
+    password: root123456
+    url: jdbc:mysql://47.115.209.11:3305/pension_platform?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&&allowPublicKeyRetrieval=true
   thymeleaf:
     # close thymeleaf cache
     cache: false
